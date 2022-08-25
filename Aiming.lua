@@ -437,12 +437,11 @@ Heartbeat:Connect(function()
     Aiming.GetClosestPlayerToCursor()
 end)
 
-
 -- // Resolver part
 function Aiming.GetClosestPlayerToCursor(Character)
-    Target = Aiming.GetClosestPlayerToCursor
-    TargetVelocity = Target.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity
-    Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
+TargetVelocity = Aiming.GetClosestPlayerToCursor(Character).HumanoidRootPart.AssemblyLinearVelocity
+Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
 end
 -- //
+
 return Aiming
