@@ -437,13 +437,11 @@ Heartbeat:Connect(function()
     Aiming.GetClosestPlayerToCursor()
 end)
 
-RunService.RenderStepped:Connect(function ()
-            if DaHoodSettings.VelocityResolver then
-                pcall(function ()
-                    TargetVelocity = Aiming.Character.HumanoidRootPart.Velocity
-                    Target.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
-                end)
-            end
-    end)
+
+-- // Resolver part
+function Aiming.GetClosestPlayerToCursor(Character)
+    TargetVelocity = Target.Character.HumanoidRootPart.AssemblyLinearVelocity
+    Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
+end
 -- //
 return Aiming
