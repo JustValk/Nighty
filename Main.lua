@@ -15,7 +15,6 @@ local DaHoodSettings = {
     AimLock = false,
     Prediction = 0.14,
     VelocityResolver = true,
-    ReverseResolver = true,
 }
 getgenv().DaHoodSettings = DaHoodSettings
 
