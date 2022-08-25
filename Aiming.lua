@@ -444,14 +444,6 @@ RunService.RenderStepped:Connect(function ()
                     Target.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
                 end)
             end
-                if DaHoodSettings.ReverseResolver == true then
-                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, ClosestPartPosition - Aiming.Character.Velocity/DaHoodSettings.Prediction)
-                    workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
-                end
-                if DaHoodSettings.ReverseResolver == false then
-                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, ClosestPartPosition + Aiming.Character.Velocity/DaHoodSettings.Prediction)
-                    workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
-                end
     end)
 -- //
 return Aiming
