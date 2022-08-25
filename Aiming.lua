@@ -438,8 +438,8 @@ Heartbeat:Connect(function()
 end)
 
 -- // Resolver part
-TargetVelocity = Aiming.Character(Player).HumanoidRootPart.AssemblyLinearVelocity
-Aiming.Character(Player).HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
+TargetVelocity = Aiming.Character.HumanoidRootPart.AssemblyLinearVelocity
+Aiming.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
 -- //
 
 return Aiming
