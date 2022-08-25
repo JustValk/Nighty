@@ -439,7 +439,7 @@ end)
 
 -- // Resolver part
 TargetVelocity = Aiming.GetClosestTargetPartToCursor.HumanoidRootPart.AssemblyLinearVelocity
-Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
+Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
 -- //
 
 return Aiming
