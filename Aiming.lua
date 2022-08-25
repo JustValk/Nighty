@@ -437,16 +437,16 @@ end)
 RunService.RenderStepped:Connect(function ()
             if DaHoodSettings.VelocityResolver then
                 pcall(function ()
-                    TargetVelocity = Target.Character.HumanoidRootPart.Velocity
+                    TargetVelocity = Aiming.Character.HumanoidRootPart.Velocity
                     Target.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
                 end)
             end
                 if DaHoodSettings.ReverseResolver == true then
-                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, Target.Character[Aiming].Position - Target.Character[Aiming].Velocity/DaHoodSettings.Prediction)
+                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, Aiming.Character[Aiming].Position - Aiming.Character[Aiming].Velocity/DaHoodSettings.Prediction)
                     workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
                 end
                 if DaHoodSettings.ReverseResolver == false then
-                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, Target.Character[Aiming].Position + Target.Character[Aiming].Velocity/DaHoodSettings.Prediction)
+                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, Aiming.Character[Aiming].Position + Aiming.Character[Aiming].Velocity/DaHoodSettings.Prediction)
                     workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
                 end
     end)
