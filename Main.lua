@@ -14,7 +14,6 @@ local DaHoodSettings = {
     SilentAim = true,
     AimLock = false,
     Prediction = 0.14,
-    AimLockKeybind = Enum.KeyCode.E
     VelocityResolver = true,
     ReverseResolver = true,
 }
@@ -50,13 +49,3 @@ __index = hookmetamethod(game, "__index", function(t, k)
 
     return __index(t, k)
 end)
-
-RunService:BindToRenderStep("AimLock", 0, function()
-    if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
-        local SelectedPart = Aiming.SelectedPart
-
-        local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
-
-        CurrentCamera.CFrame = CFrame.lookAt(CurrentCamera.CFrame.Position, Hit.Position)
-    end
-    end)
