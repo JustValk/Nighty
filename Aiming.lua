@@ -449,7 +449,7 @@ RunService.RenderStepped:Connect(function ()
                     workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
                 end
                 if DaHoodSettings.ReverseResolver == false then
-                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, Aiming.Character.p + Aiming.Character.Velocity/DaHoodSettings.Prediction)
+                    local zxc = CFrame.new(workspace.CurrentCamera.CFrame.p, ClosestPartPosition + Aiming.Character.Velocity/DaHoodSettings.Prediction)
                     workspace.CurrentCamera.CFrame = workspace.CurrentCamera.CFrame:Lerp(zxc, 1, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
                 end
     end)
