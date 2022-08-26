@@ -397,6 +397,7 @@ function Aiming.GetClosestPlayerToCursor()
 
         return LocalPlayer
     end
+    
     FOVSizeV2 = 9.4
 
 function Aiming.TargetGetTarget()
