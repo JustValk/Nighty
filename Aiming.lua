@@ -431,6 +431,7 @@ function Aiming.GetClosestPlayerToCursor()
     Aiming.SelectedPart = TargetPart
 end
 
+char = Aiming.Selected.LocalPlayer.Character.HumanoidRootPart
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     Aiming.UpdateFOV()
@@ -438,10 +439,10 @@ Heartbeat:Connect(function()
 end)
 
 -- // Resolver part
-TargetVelocity = Aiming.Selected.HumanoidRootPart.AssemblyLinearVelocity
-Aiming.Selected.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
-Aiming.Selected.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
-Aiming.Selected.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
+TargetVelocity = Aiming.Selected.char.Velocity
+Aiming.Selected.char.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+Aiming.Selected.char.Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
+Aiming.Selected.char.Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
 -- //
 
 return Aiming
