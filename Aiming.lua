@@ -114,7 +114,7 @@ function Aiming.IsPartVisible(Part, PartDescendant)
 
 
  -- // Resolver part
-TargetVelocity = Aiming.ClosestPlayer.HumanoidRootPart.Velocity
+TargetVelocity = Aiming.Selected.HumanoidRootPart.Velocity
 Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
 Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
 Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
