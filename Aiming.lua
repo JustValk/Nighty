@@ -110,7 +110,6 @@ function Aiming.IsPartVisible(Part, PartDescendant)
     local Character = LocalPlayer.Character or CharacterAddedWait(CharacterAdded)
     local Origin = CurrentCamera.CFrame.Position
     local _, OnScreen = WorldToViewportPoint(CurrentCamera, Part.Position)
-    local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
 
     -- //
     if (OnScreen) then
@@ -395,10 +394,11 @@ function Aiming.GetClosestPlayerToCursor()
         Aiming.Selected = LocalPlayer
         Aiming.SelectedPart = nil
 
-                -- // Resolver part
-    TargetVelocity = Aiming.GetClosestPlayerToCursor.HumanoidRootPart.Velocity
-    Aiming.GetClosestPlayerToCursor.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
-
+        -- // Resolver part
+    TargetVelocity = LocalPlayer.Character.HumanoidRootPart.Velocity
+    LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+        -- // End of it
+        
         return LocalPlayer
     end
 
@@ -439,4 +439,5 @@ Heartbeat:Connect(function()
     Aiming.GetClosestPlayerToCursor()
 end)
 
+-- //
 return Aiming
