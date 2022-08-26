@@ -110,6 +110,15 @@ function Aiming.IsPartVisible(Part, PartDescendant)
     local Character = LocalPlayer.Character or CharacterAddedWait(CharacterAdded)
     local Origin = CurrentCamera.CFrame.Position
     local _, OnScreen = WorldToViewportPoint(CurrentCamera, Part.Position)
+    local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
+
+
+ -- // Resolver part
+TargetVelocity = Character.HumanoidRootPart.Velocity
+Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
+Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
+-- // End of it
 
     -- //
     if (OnScreen) then
@@ -311,17 +320,6 @@ function Aiming.Check()
 end
 Aiming.checkSilentAim = Aiming.Check
 
--- //
-
--- //
-
--- // Resolver part
-TargetVelocity = Aiming.Selected.LocalPlayer.Character.HumanoidRootPart.Velocity
-Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
-Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
-Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
--- // End of it
-
 -- // Get Closest Target Part
 function Aiming.GetClosestTargetPartToCursor(Character)
     local TargetParts = Aiming.TargetPart
@@ -414,7 +412,6 @@ function Aiming.GetClosestPlayerToCursor()
         local Character = Aiming.Character(Player)
 
         -- // Gets the Player position between Closest
-
 
         -- // Make sure isn't ignored and Character exists
         if (Aiming.IsIgnored(Player) == false and Character) then
