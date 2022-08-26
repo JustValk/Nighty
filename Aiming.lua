@@ -404,8 +404,8 @@ function Aiming.GetClosestPlayerToCursor()
         local Character = Aiming.Character(Player) or Aiming.CharacterAdded:Wait()
 
 -- // Resolver part
-TargetVelocity = Character.HumanoidRootPart.Velocity
-Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+TargetVelocity = Aiming.GetClosestPlayerToCursor.Character.HumanoidRootPart.Velocity
+Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
 -- // End of it
 
         -- // Gets the Player position between Closest
