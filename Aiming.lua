@@ -112,12 +112,6 @@ function Aiming.IsPartVisible(Part, PartDescendant)
     local _, OnScreen = WorldToViewportPoint(CurrentCamera, Part.Position)
     local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
 
-
- -- // Resolver part
-TargetVelocity = Aiming.Selected.Character or Aiming.Selected.CharacterAdded:Wait().HumanoidRootPart.Velocity
-Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
--- // End of it
-
     -- //
     if (OnScreen) then
         -- // Vars
@@ -407,7 +401,12 @@ function Aiming.GetClosestPlayerToCursor()
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
         -- // Get Character
-        local Character = Aiming.Character(Player)
+        local Character = Aiming.Character(Player) or Aiming.CharacterAdded:Wait()
+
+-- // Resolver part
+TargetVelocity = Character.HumanoidRootPart.Velocity
+Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
+-- // End of it
 
         -- // Gets the Player position between Closest
 
