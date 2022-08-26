@@ -397,9 +397,10 @@ function Aiming.GetClosestPlayerToCursor()
 
         return LocalPlayer
     end
+    FOVSizeV2 = Options.FOVSizex.Value*9.4
 
-    function Aiming.GetTarget()
-        local distance = 9.4
+function Aiming.TargetGetTarget()
+        local distance = FOVSizeV2
         local zclosest
     
         for i, v in pairs(game.Players:GetPlayers()) do
@@ -415,7 +416,7 @@ function Aiming.GetClosestPlayerToCursor()
         return zclosest
     end
 
-    GetTarget = Aiming.GetTarget()
+    GetTarget = Aiming.TargetGetTarget()
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
