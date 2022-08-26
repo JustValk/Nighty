@@ -431,7 +431,7 @@ function Aiming.GetClosestPlayerToCursor()
     Aiming.SelectedPart = TargetPart
 end
 
-local char = Aiming.Selected.Player.Character or Player.CharacterAdded:Wait()
+local char = Aiming.Selected.Player.Character
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     Aiming.UpdateFOV()
