@@ -39,8 +39,8 @@ getgenv().Aiming = {
     Enabled = true,
 
     ShowFOV = false,
-    FOV = 119,
-    FOVSides = 300,
+    FOV = 9.4,
+    FOVSides = 25,
     FOVColour = Color3fromRGB(0, 147, 255),
 
     VisibleCheck = true,
@@ -399,7 +399,7 @@ function Aiming.GetClosestPlayerToCursor()
     end
 
     function Aiming.GetTarget()
-        local distance = 1/0
+        local distance = 9.4
         local zclosest
     
         for i, v in pairs(game.Players:GetPlayers()) do
