@@ -399,7 +399,7 @@ function Aiming.GetClosestPlayerToCursor()
     end
 
     function Aiming.GetTarget()
-        local distance = 1/10
+        local distance = 1/0
         local zclosest
     
         for i, v in pairs(game.Players:GetPlayers()) do
