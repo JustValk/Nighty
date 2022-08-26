@@ -316,7 +316,7 @@ Aiming.checkSilentAim = Aiming.Check
 -- //
 
 -- // Resolver part
-TargetVelocity = Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity
+TargetVelocity = Aiming.Selected.LocalPlayer.Character.HumanoidRootPart.Velocity
 Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
 Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
 Aiming.Selected(LocalPlayer.Character.HumanoidRootPart).Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
