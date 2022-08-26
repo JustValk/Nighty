@@ -311,6 +311,17 @@ function Aiming.Check()
 end
 Aiming.checkSilentAim = Aiming.Check
 
+-- //
+local char = Aiming.Selected(Character.HumanoidRootPart)
+-- //
+
+-- // Resolver part
+TargetVelocity = char.Velocity
+char.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+char.Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
+char.Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
+-- // End of it
+
 -- // Get Closest Target Part
 function Aiming.GetClosestTargetPartToCursor(Character)
     local TargetParts = Aiming.TargetPart
@@ -403,7 +414,7 @@ function Aiming.GetClosestPlayerToCursor()
         local Character = Aiming.Character(Player)
 
         -- // Gets the Player position between Closest
-        Pos = LocalPlayer.Character.HumanoidRootPart.Position
+
 
         -- // Make sure isn't ignored and Character exists
         if (Aiming.IsIgnored(Player) == false and Character) then
@@ -431,18 +442,10 @@ function Aiming.GetClosestPlayerToCursor()
     Aiming.SelectedPart = TargetPart
 end
 
-local char = Aiming.Selected.Player.Character.HumanoidRootPart
 -- // Heartbeat Function
 Heartbeat:Connect(function()
     Aiming.UpdateFOV()
     Aiming.GetClosestPlayerToCursor()
 end)
-
--- // Resolver part
-TargetVelocity = Aiming.Selected.char.Velocity
-char.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
-char.Velocity = Vector3.new(TargetVelocity.X, 0.000000000000000000000000000000001, TargetVelocity.Z)
-char.Velocity = Vector3.new(TargetVelocity.X, 0.1, TargetVelocity.Z)
--- //
 
 return Aiming
