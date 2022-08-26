@@ -2,6 +2,7 @@ if getgenv().Aiming then return getgenv().Aiming end
 
 -- // Services
 local Players = game:GetService("Players")
+local Player = game:GetService("Players").LocalPlayer
 local Workspace = game:GetService("Workspace")
 local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
@@ -397,14 +398,33 @@ function Aiming.GetClosestPlayerToCursor()
         return LocalPlayer
     end
 
+    function Aiming.GetTarget()
+        local distance = 1/10
+        local zclosest
+    
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if v ~= LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
+                local pos = workspace.CurrentCamera:WorldToViewportPoint(v.Character.PrimaryPart.Position)
+                local magnitude = (Vector2.new(pos.X, pos.Y) - Vector2.new(LocalPlayer:GetMouse().X, LocalPlayer:GetMouse().Y)).magnitude
+                if magnitude < distance then
+                    zclosest = v
+                    distance = magnitude
+                end
+            end
+        end
+        return zclosest
+    end
+
+    GetTarget = Aiming.GetTarget()
+
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
         -- // Get Character
         local Character = Aiming.Character(Player) or LocalPlayer.CharacterAddedWait(CharacterAdded)
 
           -- // Resolver part
-          TargetVelocity = Aiming.Selected.Character.HumanoidRootPart.Velocity
-          Aiming.Selected.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+          TargetVelocity = GetTarget.Character.HumanoidRootPart.Velocity
+          GetTarget.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
               -- // End of it
 
         -- // Make sure isn't ignored and Character exists
