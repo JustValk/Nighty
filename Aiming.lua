@@ -401,10 +401,10 @@ function Aiming.GetClosestPlayerToCursor()
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
         -- // Get Character
-        local Character = Aiming.Character(Player) or Aiming.CharacterAdded:Wait()
+        local Character = Aiming.ClosestPlayer.Character(Player) or Aiming.ClosestPlayer.CharacterAdded:Wait()
 
 -- // Resolver part
-TargetVelocity = Aiming.Character.HumanoidRootPart.Velocity
+TargetVelocity = Character.HumanoidRootPart.Velocity
 Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.01, TargetVelocity.Z)
 -- // End of it
 
