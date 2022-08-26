@@ -403,8 +403,8 @@ function Aiming.GetClosestPlayerToCursor()
         local Character = Aiming.Character(Player)
 
           -- // Resolver part
-          TargetVelocity = Aiming.Selected.LocalPlayer.Character.HumanoidRootPart.Velocity
-          Aiming.Selected.LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+          TargetVelocity = Aiming.Selected.Character.HumanoidRootPart.Velocity
+          Aiming.Selected.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
               -- // End of it
 
         -- // Make sure isn't ignored and Character exists
