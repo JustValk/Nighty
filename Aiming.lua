@@ -394,14 +394,14 @@ function Aiming.GetClosestPlayerToCursor()
         Aiming.Selected = LocalPlayer
         Aiming.SelectedPart = nil
 
-        -- // Resolver part
-    TargetVelocity = LocalPlayer.Character.HumanoidRootPart.Velocity
-    LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
-        -- // End of it
-        
         return LocalPlayer
     end
-
+     
+        -- // Resolver part
+        TargetVelocity = LocalPlayer.Character.HumanoidRootPart.Velocity
+        LocalPlayer.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+            -- // End of it
+            
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
         -- // Get Character
