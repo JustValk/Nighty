@@ -414,7 +414,7 @@ function Aiming.GetClosestPlayerToCursor()
         return zclosest
     end
 
-    GetTarget = GetTarget()
+    GetTarget = Aiming.GetTarget()
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
