@@ -398,7 +398,24 @@ function Aiming.GetClosestPlayerToCursor()
         return LocalPlayer
     end
 
-    GetTarget = Aiming.Selected(LocalPlayer)
+    function Aiming.TargetGetTarget()
+        local distance = TargetFOVSize
+        local zclosest
+    
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if v ~= LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
+                local PartPos, onScreen = WorldToViewportPoint(CurrentCamera, Primarypart.Position)
+                local Magnitude = (Vector2new(PartPos.X, PartPos.Y - GuiInset.Y) - Vector2new(Mouse.X, Mouse.Y)).Magnitude
+                if magnitude < ShortestDistance then
+                    zclosest = v
+                    ShortestDistance = magnitude
+                end
+            end
+        end
+        return zclosest
+    end
+
+    GetTarget = GetTarget()
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
