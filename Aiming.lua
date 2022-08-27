@@ -3,6 +3,7 @@ if getgenv().Aiming then return getgenv().Aiming end
 -- // Services
 local Players = game:GetService("Players")
 local Player = game:GetService("Players").LocalPlayer
+local LPlayer = game:GetService("Players").LocalPlayer
 local Workspace = game:GetService("Workspace")
 local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
@@ -398,28 +399,32 @@ function Aiming.GetClosestPlayerToCursor()
         return LocalPlayer
     end
 
-    function Aiming.TargetGetTarget()
-        local zclosest
-    
-        for i, v in pairs(game.Players:GetPlayers()) do
-            if v ~= LocalPlayer and v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 and v.Character:FindFirstChild("HumanoidRootPart") then
-                local PartPos, onScreen = WorldToViewportPoint(CurrentCamera, Primarypart.Position)
-                local Magnitude = (Vector2new(PartPos.X, PartPos.Y - GuiInset.Y) - Vector2new(Mouse.X, Mouse.Y)).Magnitude
-                if magnitude < ShortestDistance then
-                    zclosest = v
-                    ShortestDistance = magnitude
+function Aiming.GetClosestPlayer()
+        local ClosestDistance, ClosestPlayer = math.huge, nil;
+        for _,Player in next, game:GetService("Players"):GetPlayers() do
+          if Player ~= LPlayer then
+            local Character = Player.Character
+            if Character and Character.Humanoid.Health > 1 then
+              local ScreenPosition, IsVisibleOnViewPort = WorldToViewportPoint(Character.HumanoidRootPart.Position)
+              if IsVisibleOnViewPort then
+                local MDistance = (Vector2.new(LMouse.X, LMouse.Y) - Vector2.new(ScreenPositionMouse.X, ScreenPosition.Y)).Magnitude
+                if MDistance < ClosestDistance then
+                  ClosestPlayer2 = Player
+                  ClosestDistance = MDistance
                 end
+              end
             end
+          end
         end
-        return zclosest
-    end
+        return ClosestPlayer2, ClosestDistance
+      end
 
-    GetTarget = Aiming.GetTarget()
+    GetTarget = Aiming.GetClosestPlayer()
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
         -- // Get Character
-        local Character = Aiming.Character(Player) or LocalPlayer.CharacterAddedWait(CharacterAdded)
+        local Character = Aiming.Character(Player) or Players.CharacterAddedWait()
 
           -- // Resolver part
           TargetVelocity = GetTarget.Character.HumanoidRootPart.Velocity
