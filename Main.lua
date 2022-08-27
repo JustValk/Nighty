@@ -1,50 +1,83 @@
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/JustValk/Nighty/main/Aiming.lua"))()
-Aiming.TeamCheck(false)
+-- // Dependencies
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Aiming/main/Examples/AimLock.lua"))()
+local AimingChecks = Aiming.Checks
+local AimingSelected = Aiming.Selected
+local AimLockSettings = Aiming.AimLock
 
+-- // Services
 local Workspace = game:GetService("Workspace")
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
-local UserInputService = game:GetService("UserInputService")
 
-local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
+-- // Vars
 local CurrentCamera = Workspace.CurrentCamera
 
 local DaHoodSettings = {
+    Prediction = 0.165,
+
     SilentAim = true,
-    AimLock = false,
-    Prediction = 0.14,
-    VelocityResolver = true,
+
+    AimLock = AimLockSettings,
+    BeizerLock = {
+        Smoothness = 0.05,
+        CurvePoints = {
+            Vector2.new(0.83, 0),
+            Vector2.new(0.17, 1)
+        }
+    }
 }
 getgenv().DaHoodSettings = DaHoodSettings
 
-function Aiming.Check()
-    if not (Aiming.Enabled == true and Aiming.Selected ~= LocalPlayer and Aiming.SelectedPart ~= nil) then
-        return false
-    end
-
-    local Character = Aiming.Character(Aiming.Selected)
-    local KOd = Character:WaitForChild("BodyEffects")["K.O"].Value
-    local Grabbed = Character:FindFirstChild("GRABBING_CONSTRAINT") ~= nil
-
-    if (KOd or Grabbed) then
-        return false
-    end
-
-    return true
+-- //
+local function ApplyPredictionFormula(SelectedPart)
+    AimingVelocity = Aiming.Selected.Velocity
+    return SelectedPart.CFrame * (AimingVelocity * DaHoodSettings.Prediction)
 end
 
+-- // Hook
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
-        local SelectedPart = Aiming.SelectedPart
+    -- // Check if it trying to get our mouse's hit or target and see if we can use it
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and DaHoodSettings.SilentAim) then
+        -- // Vars
+        local SelectedPart = AimingSelected.Part
+        local Hit = ApplyPredictionFormula(SelectedPart)
 
-        if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
-
-            return (k == "Hit" and Hit or SelectedPart)
-        end
+        -- // Return modded val
+        return (k == "Hit" and Hit or SelectedPart)
     end
 
+    -- // Return
     return __index(t, k)
 end)
+
+-- // Aimlock
+function AimLockSettings.AimLockPosition(CameraMode)
+    -- // Vars
+    local Position
+    local BeizerData = {}
+
+    -- // Hit to account prediction
+    local Hit = ApplyPredictionFormula(AimingSelected.Part)
+    local HitPosition = Hit.Position
+
+    -- //
+    if (CameraMode) then
+        Position = HitPosition
+    else
+        -- // Convert 3d -> 2d
+        local Vector, _ = CurrentCamera:WorldToViewportPoint(HitPosition)
+        local Vector2D = Vector2.new(Vector.X, Vector.Y)
+
+        -- // Vars
+        local BeizerLock = DaHoodSettings.BeizerLock
+
+        -- //
+        Position = Vector2D
+        BeizerData = {
+            Smoothness = BeizerLock.Smoothness,
+            CurvePoints = BeizerLock.CurvePoints
+        }
+    end
+
+    -- // Return
+    return Position, BeizerData
+end
