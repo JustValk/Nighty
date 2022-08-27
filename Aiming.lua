@@ -409,6 +409,8 @@ function Aiming.GetClosestPlayerToCursor()
         if not character or not character.Parent then
             character = Players.CharacterAdded:wait()
         end
+        
+        local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
  
           TargetVelocity = GetTarget.Character.HumanoidRootPart.Velocity
           GetTarget.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
