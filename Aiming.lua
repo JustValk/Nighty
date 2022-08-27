@@ -398,7 +398,7 @@ function Aiming.GetClosestPlayerToCursor()
         return LocalPlayer
     end
 
-    GetTarget = Aiming.ClosestPlayer()
+    GetTarget = Aiming.Selected(LocalPlayer)
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
