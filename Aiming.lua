@@ -405,7 +405,7 @@ function Aiming.GetClosestPlayer()
           if Player ~= LPlayer then
             local Character = Player.Character
             if Character and Character.Humanoid.Health > 1 then
-              local ScreenPosition, IsVisibleOnViewPort = WorldToViewportPoint(Character.HumanoidRootPart.Position)
+              local ScreenPosition, IsVisibleOnViewPort = WorldToViewportPoint(CurrentCamera, Character.HumanoidRootPart.Position)
               if IsVisibleOnViewPort then
                 local MDistance = (Vector2.new(LMouse.X, LMouse.Y) - Vector2.new(ScreenPositionMouse.X, ScreenPosition.Y)).Magnitude
                 if MDistance < ClosestDistance then
