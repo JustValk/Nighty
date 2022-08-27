@@ -400,7 +400,7 @@ function Aiming.GetClosestPlayerToCursor()
     end
 
 
-    GetTarget = Aiming.GetClosestPlayerToCursor(Aiming.Selected)
+    GetTarget = Aiming.Selected(LocalPlayer)
 
     -- // Loop through all players
     for _, Player in ipairs(GetPlayers(Players)) do
@@ -409,7 +409,7 @@ function Aiming.GetClosestPlayerToCursor()
         if not character or not character.Parent then
             character = Players.CharacterAdded:wait()
         end
-        
+
         local HumanoidRootPart = Character:FindFirstChild("HumanoidRootPart")
  
           TargetVelocity = GetTarget.Character.HumanoidRootPart.Velocity
