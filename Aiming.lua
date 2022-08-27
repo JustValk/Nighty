@@ -427,8 +427,8 @@ function Aiming.GetClosestPlayer()
         local Character = Aiming.Character(Player) or Players.CharacterAddedWait()
 
           -- // Resolver part
-          TargetVelocity = GetTarget.Character.HumanoidRootPart.Velocity
-          GetTarget.Character.HumanoidRootPart.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
+          TargetVelocity = GetTarget.Velocity
+          GetTarget.Velocity = Vector3.new(TargetVelocity.X, -0.000000000000000000000000000000001, TargetVelocity.Z)
               -- // End of it
 
         -- // Make sure isn't ignored and Character exists
