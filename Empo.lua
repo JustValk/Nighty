@@ -1,5 +1,4 @@
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/slama0001/DHLock/main/Aiming.lua"))()
-Aiming.TeamCheck(false)
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Aiming/main/Module.lua"))()
 
 local Workspace = game:GetService("Workspace")
 local Players = game:GetService("Players")
@@ -10,12 +9,16 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-local DaHoodSettings = {
-    SilentAim = true,
-    AimLock = false,
-    Prediction = 0.14,
-    AimLockKeybind = Enum.KeyCode.E
+AimLock = AimLockSettings,
+    BeizerLock = {
+        Smoothness = 0.05,
+        CurvePoints = {
+            Vector2.new(0.83, 0),
+            Vector2.new(0.17, 1)
+        }
+    }
 }
+
 getgenv().DaHoodSettings = DaHoodSettings
 
 function Aiming.Check()
@@ -40,7 +43,8 @@ __index = hookmetamethod(game, "__index", function(t, k)
         local SelectedPart = Aiming.SelectedPart
 
         if (DaHoodSettings.SilentAim and (k == "Hit" or k == "Target")) then
-            local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+            local Velocity = Aiming.Selected.Velocity
+            local Hit = SelectedPart.CFrame + (Vector3.new(Velocity.X, 0, Velocity.Z) * DaHoodSettings.Prediction)
 
             return (k == "Hit" and Hit or SelectedPart)
         end
