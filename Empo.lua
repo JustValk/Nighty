@@ -9,15 +9,6 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
-AimLock = AimLockSettings,
-    BeizerLock = {
-        Smoothness = 0.05,
-        CurvePoints = {
-            Vector2.new(0.83, 0),
-            Vector2.new(0.17, 1)
-        }
-    }
-}
 
 getgenv().DaHoodSettings = DaHoodSettings
 
