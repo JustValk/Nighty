@@ -9,7 +9,12 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local CurrentCamera = Workspace.CurrentCamera
 
+local DaHoodSettings = {
+    Prediction = 0.11721,
 
+    SilentAim = true,
+  }
+}
 getgenv().DaHoodSettings = DaHoodSettings
 
 function Aiming.Check()
