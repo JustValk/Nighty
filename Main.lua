@@ -11,7 +11,7 @@ local Workspace = game:GetService("Workspace")
 local CurrentCamera = Workspace.CurrentCamera
 
 local DaHoodSettings = {
-    Prediction = 0.14,
+    Prediction = 0.1229,
 
     SilentAim = true,
 
