@@ -29,7 +29,7 @@ getgenv().DaHoodSettings = DaHoodSettings
 
 local function ApplyPredictionFormula(SelectedPart)
     local Velocity = Aiming.Selected.Velocity
-    return SelectedPart.CFrame + (SelectedPart * DaHoodSettings.Prediction)
+    return SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
 end
 
 -- // Hook
