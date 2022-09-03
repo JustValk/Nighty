@@ -11,7 +11,7 @@ local Workspace = game:GetService("Workspace")
 local CurrentCamera = Workspace.CurrentCamera
 
 local DaHoodSettings = {
-    Prediction = 0.14,
+    Prediction = 0.08,
 
     SilentAim = true,
 
@@ -29,7 +29,7 @@ getgenv().DaHoodSettings = DaHoodSettings
 
 local function ApplyPredictionFormula(SelectedPart)
     local Velocity = Aiming.Selected.Velocity
-    return SelectedPart.CFrame + (Vector3.new(Velocity.X, 1, Velocity.Z) * DaHoodSettings.Prediction)
+    return SelectedPart.CFrame + (SelectedPart * DaHoodSettings.Prediction)
 end
 
 -- // Hook
