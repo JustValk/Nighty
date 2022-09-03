@@ -14,7 +14,6 @@
                                  -- OPEN SOURCED
                                   -- OPEN SOURCED -- OPEN SOURCED -- OPEN SOURCED -- OPEN SOURCED
                                 local Aiming = loadstring(game:HttpGet("https://pastebin.com/raw/ziB8YGHT", true))()
-                            Aiming.TeamCheck(false)
                              
                             
                             local Workspace = game:GetService("Workspace")
