@@ -14,8 +14,6 @@ local DaHoodSettings = {
     Prediction = 0.14,
 
     SilentAim = true,
-    
-    TargetPart = {"Head", "LeftHand", "RightHand", "LeftLowerArm", "RightLowerArm", "LeftUpperArm", "RightUpperArm", "LeftFoot", "LeftLowerLeg", "UpperTorso", "LeftUpperLeg", "RightLowerLeg", "RightFoot", "LowerTorso", "RightUpperLeg"},
 
     AimLock = AimLockSettings,
     BeizerLock = {
