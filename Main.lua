@@ -1,5 +1,7 @@
 -- // Dependencies
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/JustValk/Aiming/main/Module.lua"))()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/JustValk/Aiming/main/Load.lua"))()("Module")
+local AimingSettings = Aiming.Settings
+AimingSettings.FOVSettings.Scale = 16
 local AimingChecks = Aiming.Checks
 local AimingSelected = Aiming.Selected
 local AimLockSettings = Aiming.AimLock
