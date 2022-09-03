@@ -39,4 +39,4 @@ __index = hookmetamethod(game, "__index", function(t, k)
 
     -- // Return
     return __index(t, k)
-end
+end)
