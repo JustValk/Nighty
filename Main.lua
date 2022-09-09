@@ -6,7 +6,7 @@ local AimingSelected = Aiming.Selected
 
  -- // Makes sure that it aint being seen thanks to stefanuk huge thanks to him!
 Aiming.Settings.FOVSettings.Scale = 16
-Aiming.Settings.FOVSettings.Sides = 25
+Aiming.Settings.FOVSettings.Sides = 300
 Aiming.Settings.FOVSettings.Enabled = false
 Aiming.Settings.TracerSettings.Enabled = false
 
