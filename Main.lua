@@ -19,7 +19,7 @@ local AimingChecks = Aiming.Checks
 local AimingSelected = Aiming.Selected
 
  -- // Makes sure that it aint being seen thanks to stefanuk huge thanks to him!
-Aiming.Settings.FOVSettings.Scale = 15.5
+Aiming.Settings.FOVSettings.Scale = 11.5
 Aiming.Settings.FOVSettings.Sides = 25
 Aiming.Settings.FOVSettings.Enabled = false
 Aiming.Settings.TracerSettings.Enabled = false
@@ -31,7 +31,7 @@ local Workspace = game:GetService("Workspace")
 local CurrentCamera = Workspace.CurrentCamera
 
 local DaHoodSettings = {
-    Prediction = 0.135,
+    Prediction = 0.1437,
 
     SilentAim = true,
 
