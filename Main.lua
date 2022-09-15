@@ -22,19 +22,19 @@ local DaHoodSettings = {
     SilentAim = true,
 
 }
-getgenv().DaHoodSettings = DaHoodSettings
+getgenv().Aiming = Aiming
 
 
 local function ApplyPredictionFormula(SelectedPart)
     local Velocity = Aiming.Selected.Velocity
-    return SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
+    return SelectedPart.CFrame + (SelectedPart.Velocity * Aiming.Prediction)
 end
 
 -- // Hook
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
     -- // Check if it trying to get our mouse's hit or target and see if we can use it
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and DaHoodSettings.SilentAim) then
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and Aiming.SilentAim) then
         -- // Vars
         local SelectedPart = AimingSelected.Part
         local Hit = ApplyPredictionFormula(SelectedPart)
