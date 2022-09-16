@@ -5,7 +5,7 @@ local AimingChecks = Aiming.Checks
 local AimingSelected = Aiming.Selected
 
  -- // Makes sure that it aint being seen thanks to stefanuk huge thanks to him!
-Aiming.Settings.FOVSettings.Scale = 12.22
+Aiming.Settings.FOVSettings.Scale = 14.5
 Aiming.Settings.FOVSettings.Sides = 25
 Aiming.Settings.FOVSettings.Enabled = false
 Aiming.Settings.TracerSettings.Enabled = false
@@ -21,14 +21,27 @@ local DaHoodSettings = {
 
     SilentAim = true,
 
+    AimLock = AimLockSettings,
+    BeizerLock = {
+        Smoothness = 0.05,
+        CurvePoints = {
+            Vector2.new(0.83, 0),
+            Vector2.new(0.17, 1)
+        }
+    }
 }
-getgenv().Aiming = Aiming
+getgenv().DaHoodSettings = DaHoodSettings
 
-
+-- //
 local function ApplyPredictionFormula(SelectedPart)
-    local Velocity = Aiming.Selected.Velocity
-    return SelectedPart.CFrame + (SelectedPart.Velocity * Aiming.Prediction)
+    return SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
 end
+
+-- // Hook
+local __index
+__index = hookmetamethod(game, "__index", function(t, k)
+    -- // Check if it trying to get our mouse's hit or target and see if we can use it
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and DaHoodSettings.SilentAim) then
 
 -- // Hook
 local __index
