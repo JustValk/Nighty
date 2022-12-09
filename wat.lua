@@ -1420,9 +1420,7 @@ function library:Unload()
         self.holder:Remove()
     end
 
-    if self.cursor then
-        self.cursor:Remove()
-    end
+
 
     if self.watermarkobject then
        self.watermarkobject:Remove() 
@@ -2804,14 +2802,7 @@ function library:Load(options)
 
     services.InputService.MouseIconEnabled = false
 
-    utility.connect(services.RunService.RenderStepped, function()
-        if self.open then
-            local mousepos = services.InputService:GetMouseLocation()
-            cursor.PointA = mousepos
-            cursor.PointB = mousepos + Vector2.new(6, 12)
-            cursor.PointC = mousepos + Vector2.new(6, 12)
-        end
-    end)
+
 
     local holder = utility.create("Square", {
         Transparency = 0,
